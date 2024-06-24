@@ -1,8 +1,13 @@
+# New features
+Punica APL is a fork of dzaima/APL. I added the following:
+- Inner Product now fully works, in vectors, matrices, and higher dimensions. (dzaima/APL only supports vectors as arguments.)
+
+# How to build and run
 [docs](https://github.com/dzaima/APL/blob/master/docs/chars.txt) | [differences from Dyalog APL](https://github.com/dzaima/APL/blob/master/docs/differences.txt)
 
 An APL re-implementation in Java.
 
-`./build` to build, `./REPL` to start a REPL.
+`./build` to build on Unix, `build.bat` to build on Windows, `./REPL` to start a REPL.
 
 [Android app](https://github.com/dzaima/APL/tree/master/AndroidIDE)
 
