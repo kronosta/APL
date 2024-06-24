@@ -4,7 +4,6 @@ import APL.types.*;
 import APL.types.functions.*;
 import APL.types.functions.builtins.mops.ReduceBuiltin;
 import APL.errors.DomainError;
-import APL.errors.SyntaxError;
 
 public class DotBuiltin extends Dop {
   @Override public String repr() {
@@ -18,7 +17,7 @@ public class DotBuiltin extends Dop {
     }
     else if (a.rank == 2 && w.rank == 2) {
       if (a.shape[1] != w.shape[0])
-        throw new DomainError("Dot builtin passed two matrices without matching rows and columns.", this);
+        throw new DomainError("Dot builtin passed two matrices as value arguments without matching rows and columns.", this);
       Value[] results = new Value[a.shape[0] * w.shape[1]];
       for (int i = 0; i < a.shape[0]; i++)
       {
@@ -39,6 +38,27 @@ public class DotBuiltin extends Dop {
       }
       return Arr.create(results, new int[]{a.shape[0], w.shape[1]});
     }
-    throw new DomainError("Dot builtin takes only matrices and vectors, passed ranks "+a.rank+", "+w.rank, this);
+    else if (a.rank == 0 || w.rank == 0) {
+      throw new DomainError("Passed scalar as value argument to Inner Product builtin.", this);
+    }
+    else {
+      if (a.shape[a.rank - 1] != w.shape[0])
+        throw new DomainError("Inner Product builtin passed two arrays as value arguments without matching rows and columns.", this);
+      int aCondensedShape = 1;
+      int wCondensedShape = 1;
+      for (int i = 0; i < a.rank - 1; i++)
+        aCondensedShape *= a.shape[i];
+      for (int i = 1; i < w.rank; i++)
+        wCondensedShape *= w.shape[i];
+      Value aCondensed = a.ofShape(new int[]{aCondensedShape, a.shape[a.rank - 1]});
+      Value wCondensed = w.ofShape(new int[]{w.shape[0], wCondensedShape});
+      Value resultMatrix = this.call(aa, ww, aCondensed, wCondensed, derv);
+      int[] resultShape = new int[a.rank + w.rank - 2];
+      for (int i = 0; i < a.rank - 1; i++)
+        resultShape[i] = a.shape[i];
+      for (int i = 1; i < w.rank; i++)
+        resultShape[a.rank - 2 + i] = w.shape[i];
+      return resultMatrix.ofShape(resultShape);
+    }
   }
 }
