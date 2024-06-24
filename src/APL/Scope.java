@@ -174,7 +174,7 @@ public class Scope {
         this.msg = s;
       }
       
-      @SuppressWarnings("deprecation") // this is this things purpose
+      //@SuppressWarnings("deprecation") // this is this things purpose
       @Override
       protected void finalize() {
         sc.sys.println(msg+" was GCed");
