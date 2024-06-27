@@ -164,6 +164,7 @@ APL\types\functions\builtins\dops\ObverseBuiltin.class
 APL\types\functions\builtins\dops\OverBuiltin.class
 APL\types\functions\builtins\dops\RepeatBuiltin$1.class
 APL\types\functions\builtins\dops\RepeatBuiltin.class
+APL\types\functions\builtins\dops\StencilBuiltin.class
 APL\types\functions\builtins\fns\AndBuiltin$1.class
 APL\types\functions\builtins\fns\AndBuiltin$2.class
 APL\types\functions\builtins\fns\AndBuiltin.class

@@ -666,6 +666,7 @@ public class Exec {
         case '⍢': return new DualBuiltin();
         case '@': return new AtBuiltin(sc);
         case '⍫': return new ObverseBuiltin();
+        case '⌺': return new StencilBuiltin(sc);
         
         
         case '⍬': return new DoubleArr(DoubleArr.EMPTY);

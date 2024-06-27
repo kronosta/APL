@@ -32,6 +32,7 @@ public class StencilBuiltin extends Dop {
             
         }
         */
+    
         return new Num(0);
     }
 }

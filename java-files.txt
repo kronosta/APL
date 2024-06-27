@@ -96,6 +96,7 @@ APL\types\functions\builtins\dops\JotUBBuiltin.java
 APL\types\functions\builtins\dops\ObverseBuiltin.java
 APL\types\functions\builtins\dops\OverBuiltin.java
 APL\types\functions\builtins\dops\RepeatBuiltin.java
+APL\types\functions\builtins\dops\StencilBuiltin.java
 APL\types\functions\builtins\fns\AndBuiltin.java
 APL\types\functions\builtins\fns\CatBuiltin.java
 APL\types\functions\builtins\fns\CeilingBuiltin.java
