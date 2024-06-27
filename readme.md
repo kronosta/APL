@@ -1,5 +1,5 @@
 # New features
-Punica APL is a fork of dzaima/APL. I added the following:
+kronosta/APL is a fork of dzaima/APL. I added the following:
 - Inner Product now fully works, in vectors, matrices, and higher dimensions. (dzaima/APL only supports vectors as arguments.)
 
 # How to build and run
