@@ -56,8 +56,6 @@ public class Main {
                   System.out.println("-c     : disable colorful printing");
                   System.out.println("-q     : enable quoting strings");
                   System.out.println("⎕A←B   : set quad A to B");
-                  System.out.println("-D file: run the file as SBCS");
-                  System.out.println("-E a b : encode the file A in the SBCS, save as B");
                   System.out.println("If given no arguments, an implicit -r will be added");
                   System.exit(0);
                   break;
@@ -106,37 +104,6 @@ public class Main {
                     break;
                   case 'c':
                     colorful = false;
-                    break;
-                  case 'E': {
-                    String origS = readFile(args[++i]);
-                    byte[] res = new byte[origS.length()];
-                    for (int j = 0; j < origS.length(); j++) {
-                      char chr = origS.charAt(j);
-                      int index = CODEPAGE.indexOf(chr);
-                      if (index == -1) throw new DomainError("error encoding character " + chr + " (" + (+chr) + ")");
-                      res[j] = (byte) index;
-                    }
-                    String conv = args[++i];
-                    try (FileOutputStream stream = new FileOutputStream(conv)) {
-                      stream.write(res);
-                    } catch (IOException e) {
-                      e.printStackTrace();
-                      throw new DomainError("couldn't write file");
-                    }
-                    break;
-                  }
-                  case 'D':
-                    try {
-                      byte[] bytes = Files.readAllBytes(new File(args[++i]).toPath());
-                      StringBuilder res = new StringBuilder();
-                      for (byte b : bytes) {
-                        res.append(CODEPAGE.charAt(b & 0xff));
-                      }
-                      exec(res.toString(), sys.gsc);
-                    } catch (IOException e) {
-                      e.printStackTrace();
-                      throw new DomainError("couldn't read file");
-                    }
                     break;
                   default:
                     throw new DomainError("Unknown command-line argument -" + c);
