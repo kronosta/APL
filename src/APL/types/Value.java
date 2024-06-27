@@ -268,4 +268,39 @@ public abstract class Value extends Obj implements Iterable<Value> {
     System.arraycopy(w, s, r, 0, len);
     return new HArr(r, sh);
   }
+
+  public static Value subArray(Value a, int[] pos, int[] shape, Tokenable blame) {
+    if (!(pos.length == shape.length && shape.length == a.rank))
+      throw blame == null 
+        ? new SyntaxError("Mismatched ranks provided to Value.subArray.")
+        : new SyntaxError("Mismatched ranks provided to Value.subArray.", blame);
+    Value[] aValues = a.valuesCopy();
+    int aValuesIndex = 0;
+    int[] newPos = new int[pos.length];
+    System.arraycopy(pos, 0, newPos, 0, pos.length);
+    boolean satisfied = false;
+    while (!satisfied)
+    {
+      aValues[aValuesIndex] = a.simpleAt(newPos);
+      aValuesIndex++;
+      boolean incDone = false;
+      int posIndex = pos.length - 1;
+      while (!incDone)
+      {
+        newPos[posIndex]++;
+        if (newPos[posIndex] >= (pos[posIndex] + shape[posIndex]))
+        {
+          newPos[posIndex] = pos[posIndex];
+          posIndex--;
+          if (posIndex < 0)
+          {
+            incDone = true;
+            satisfied = true;
+          }
+        }
+        else incDone = true;
+      }
+    }
+    return Arr.create(aValues, shape);
+  }
 }

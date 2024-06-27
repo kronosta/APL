@@ -145,6 +145,7 @@ APL\types\functions\builtins\fns\RShoeUBBuiltin.java
 APL\types\functions\builtins\fns\RTackBuiltin.java
 APL\types\functions\builtins\fns\SemiUBBuiltin.java
 APL\types\functions\builtins\fns\SquadBuiltin.java
+APL\types\functions\builtins\fns\SubArrayBuiltin.java
 APL\types\functions\builtins\fns\StarBuiltin.java
 APL\types\functions\builtins\fns\StileBuiltin.java
 APL\types\functions\builtins\fns\TallyBuiltin.java

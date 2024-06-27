@@ -622,6 +622,7 @@ public class Exec {
         case '⍉': return new TransposeBuiltin();
         case '⊖': return new FlipBuiltin();
         case '⌽': return new ReverseBuiltin();
+        case '‡': return new SubArrayBuiltin();
         
         case '…': return new EllipsisBuiltin();
         case '⍮': return new SemiUBBuiltin();

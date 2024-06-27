@@ -1,0 +1,9 @@
+‡ - U+2021 - Sub Array
+    ⍵ should be the array to take elements from
+    ⍺ should be a 2-row matrix with ≢ ⍴⍵ columns
+        row 1 should be 1-based indexes to start
+        row 2 should be the shape of the sub-array
+    Returns a subarray of ⍵ according to ⍺
+
+    This is a separate operator because I'm confused on what the ⌷ operator in dzaima/APL actually does.
+

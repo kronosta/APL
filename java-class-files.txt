@@ -249,6 +249,7 @@ APL\types\functions\builtins\fns\RShoeUBBuiltin.class
 APL\types\functions\builtins\fns\RTackBuiltin.class
 APL\types\functions\builtins\fns\SemiUBBuiltin.class
 APL\types\functions\builtins\fns\SquadBuiltin.class
+APL\types\functions\builtins\fns\SubArrayBuiltin.class
 APL\types\functions\builtins\fns\StarBuiltin$1.class
 APL\types\functions\builtins\fns\StarBuiltin$2.class
 APL\types\functions\builtins\fns\StarBuiltin.class
