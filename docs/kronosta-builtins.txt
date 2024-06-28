@@ -64,6 +64,12 @@
             ⍵[1]: dyadic operator value
 
             Sort of like reduce, but applied to operators.
+
+            Note that this won't work for ranks higher than 1.
+            You could use an operator apply function with 1 (Fun Value), use the Each operator on it
+            to apply the result of this operator operator to each element of an array, turn these into
+            an operator using defined operators and monadic Fun Value, then apply this operator operator to that.
+
     
         I don't plan on adding a Power/Repeat operator operator, because the numeric right argument case
         can be done with the following function:
