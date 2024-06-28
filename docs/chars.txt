@@ -87,6 +87,7 @@ dyadic ops
 ⍫  obverse - define inverse: ⍶ - regular function, ⍹ - inverse
 @  at; right op = indices or function giving boolean array, left op = replacement array or function
 ⍁  for each diagonal
+⌺  stencil
 
 nilads:
 
