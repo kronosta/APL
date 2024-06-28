@@ -64,6 +64,13 @@
             ⍵[1]: dyadic operator value
 
             Sort of like reduce, but applied to operators.
+    
+        I don't plan on adding a Power/Repeat operator operator, because the numeric right argument case
+        can be done with the following function:
+            {original←⍺ ⋄ ({6◫(⊂original),⊂⍵}⍣(⍵-1))⍺}
+        and I don't think the function right argument (effectively a while loop) really makes sense
+        because there wouldn't be any valid conditions to check against with just a function.
+
 
 
     
