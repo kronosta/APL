@@ -642,6 +642,8 @@ public class Exec {
         case '≥': return new GEBuiltin();
         case '>': return new GTBuiltin();
         case '≠': return new NEBuiltin();
+
+        case '◫': return new FunValueBuiltin(sc);
         
         // mops
         case '/': return new ReduceBuiltin();

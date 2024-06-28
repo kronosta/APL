@@ -7,3 +7,58 @@
 
     This is a separate operator because I'm confused on what the ⌷ operator in dzaima/APL actually does.
 
+◫ - U+25EB - Fun Value
+    Monadic:
+        Takes a character array and evaluates it, much like Eval, except that it must evaluate to
+        a function, monadic operator, or dyadic operator.
+
+        It will return the callable in a protected form known as a
+        "function value", "monadic operator value", or "dyadic operator value" (collectively "callable values").
+
+        Callable values are not directly usable as functions or operators, rather the dyadic form of Fun Value
+        must be used to call and manipulate them.
+
+    Dyadic:
+        The left argument should be an integer (n). The right argument should be a vector of arguments depending
+        on the value of n. It is recommended to enclose each argument, like 5◫(⊂o),(⊂◫'{⍵-1}'),⊂1 for example
+        (notice the ⊂'s).
+
+        (Indexes are 1-based)
+        n=1:
+            ⍵[1]: a monadic operator value
+            ⍵[2]: a function value or other value as an argument to ⍵[1]
+
+            Returns a new function value formed from applying the operator to the argument
+        
+        n=2:
+            ⍵[1]: a dyadic operator value
+            ⍵[2] and ⍵[3]: left and right arguments to ⍵[1]
+
+            Returns a new function value formed from applying the operator to the arguments
+
+        n=3:
+            ⍵[1]: a function value
+            ⍵[2]: an argument to ⍵[1]
+
+            Returns the result of calling ⍵[1] on ⍵[2]
+
+        n=4:
+            ⍵[1]: a function value
+            ⍵[2] and ⍵[3]: left and right arguments to ⍵[1]
+
+            Returns the result of calling ⍵[1] on ⍵[2] and ⍵[3] (⍵[3] is the right argument)
+
+        n=5:
+            ⍵[1]: a dyadic operator value
+            ⍵[2]: an argument to ⍵[2]
+            ⍵[3]: must be a number, 0 if ⍵[2] is the right arguments, otherwise ⍵[2] will be the left argument
+
+            Sort of like the "Bind" operator part of "Compose", but applied to operators
+
+        n=6:
+            ⍵[1] and ⍵[2]: monadic operator values
+
+            Sort of like the "Beside" operator part of "Compose", but applied to operators.
+
+
+    

@@ -82,6 +82,9 @@ APL\types\APLMap.class
 APL\types\Arr.class
 APL\types\arrs
 APL\types\BigValue.class
+APL\types\BoxedDop.class
+APL\types\BoxedFun.class
+APL\types\BoxedMop.class
 APL\types\Callable.class
 APL\types\Char.class
 APL\types\dimensions
@@ -195,6 +198,7 @@ APL\types\functions\builtins\fns\FloorBuiltin$1.class
 APL\types\functions\builtins\fns\FloorBuiltin$2.class
 APL\types\functions\builtins\fns\FloorBuiltin.class
 APL\types\functions\builtins\fns\FormatBuiltin.class
+APL\types\functions\builtins\fns\FunValueBuiltin.class
 APL\types\functions\builtins\fns\GEBuiltin$1.class
 APL\types\functions\builtins\fns\GEBuiltin.class
 APL\types\functions\builtins\fns\GradeDownBuiltin.class

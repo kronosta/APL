@@ -54,7 +54,9 @@ fns:
 ⍒  grade down; NYI
 ⍉   transpose; NYI
 ⍧ unique mask; count
-          
+‡   none; sub array (see kronosta-builtins.txt)
+        
+◫ fun value; fun value (see kronosta-builtins.txt)
 
 < lt; sort asc
 ≤ le; NYI

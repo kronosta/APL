@@ -41,6 +41,9 @@ APL\tokenizer\types\TokArr.java
 APL\types\APLMap.java
 APL\types\Arr.java
 APL\types\BigValue.java
+APL\types\BoxedDop.java
+APL\types\BoxedFun.java
+APL\types\BoxedMop.java
 APL\types\Callable.java
 APL\types\Char.java
 APL\types\Fun.java
@@ -116,6 +119,7 @@ APL\types\functions\builtins\fns\FindBuiltin.java
 APL\types\functions\builtins\fns\FlipBuiltin.java
 APL\types\functions\builtins\fns\FloorBuiltin.java
 APL\types\functions\builtins\fns\FormatBuiltin.java
+APL\types\functions\builtins\fns\FunValueBuiltin.java
 APL\types\functions\builtins\fns\GEBuiltin.java
 APL\types\functions\builtins\fns\GradeDownBuiltin.java
 APL\types\functions\builtins\fns\GradeUpBuiltin.java
