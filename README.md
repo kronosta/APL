@@ -3,6 +3,8 @@ kronosta/APL is a fork of dzaima/APL. I added the following:
 - Inner Product now fully works, in vectors, matrices, and higher dimensions. (dzaima/APL only supports vectors as arguments.)
 - Removed SBCS (1-byte APL character set) functionality since I plan to add more characters
   - You should use Unicode instead.
+- Stencil operator (⌺) is here! I wasn't going to let the only implementation of Stencil be proprietary (or GPLed with its restrictions).
+
 
 # How to build and run
 [docs](https://github.com/dzaima/APL/blob/master/docs/chars.txt) | [differences from Dyalog APL](https://github.com/dzaima/APL/blob/master/docs/differences.txt)
