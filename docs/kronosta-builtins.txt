@@ -60,5 +60,10 @@
 
             Sort of like the "Beside" operator part of "Compose", but applied to operators.
 
+        n=7:
+            ⍵[1]: dyadic operator value
+
+            Sort of like reduce, but applied to operators.
+
 
     

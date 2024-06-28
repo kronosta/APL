@@ -3,13 +3,20 @@ package APL.types.functions.builtins.fns;
 import APL.Main;
 import APL.Scope;
 import APL.errors.DomainError;
+import APL.errors.NYIError;
+import APL.errors.SyntaxError;
+import APL.types.Arr;
 import APL.types.BoxedDop;
 import APL.types.BoxedFun;
 import APL.types.BoxedMop;
+import APL.types.Char;
 import APL.types.Fun;
 import APL.types.Num;
 import APL.types.Obj;
 import APL.types.Value;
+import APL.types.arrs.ChrArr;
+import APL.types.arrs.DoubleArr;
+import APL.types.arrs.EmptyArr;
 import APL.types.functions.Dop;
 import APL.types.functions.Mop;
 import APL.types.functions.DerivedMop;
@@ -141,6 +148,36 @@ public class FunValueBuiltin extends Fun {
 
                         public Value call(Obj aa, Value a, Value w, DerivedMop derv){
                             return mop1.derive(mop2.derive(aa)).call(a, w);
+                        }
+                    });
+                }
+                case 7:
+                {
+                    //Reduce operator operator
+                    final Value op1 = w.get(0);
+                    if (!(op1 instanceof BoxedDop)) throw new DomainError("4 (Fun Value) w: w[1] should be a dyadic operator value.", this);
+                    return new BoxedMop(new Mop(){
+                        Dop dop = ((BoxedDop)op1).dop;
+
+                        @Override public String repr() {
+                            return "7◫: "+dop.toString();
+                        }
+
+                        public Value call(Obj aa, Value w, DerivedMop derv)
+                        {
+                            if (!(aa instanceof Arr)) throw new DomainError("7 (Fun Value) w: When result called, left operator argument should be an array.");
+                            Arr aaa = (Arr)aa;
+                            Obj prev = aaa.get(0);
+                            try {
+                                for (int i = 1; i < aaa.values().length; i++)
+                                    prev = ((BoxedFun)(new FunValueBuiltin(sc).call(new Num(2), Arr.create(new Value[]{new BoxedDop(dop), prev instanceof Fun ? new BoxedFun((Fun)prev) : (Value)prev, aaa.get(i)})))).fun;
+                            }
+                            catch (ClassCastException c)
+                            {
+                                throw new DomainError("7 (Fun Value) w: Intermediate reduce returns should be functions, and the first element of the left operator argument array should be either a boxed function value or a regular value. Got "+prev.humanType(true), this);
+                            }
+                            if (prev instanceof Fun) return ((Fun)prev).call(w);
+                            throw new DomainError("7 (Fun Value) w: Operator returned "+prev.humanType(false)+" instead of function.");
                         }
                     });
                 }
