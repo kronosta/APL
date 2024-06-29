@@ -11,6 +11,7 @@ kronosta/APL is a fork of dzaima/APL. I added the following:
 - The ⎕STR system function allows you to access the output form of a value as a string.
   - The Format (⍕) function only works for numbers.
 - The ⎕FILE system function can do file I/O and other file operations (no directory support yet though, use ⎕SH for that).
+- The ⎕OSI system function can be used to detect operating system information
 
 
 # How to build and run
