@@ -89,7 +89,7 @@ bigints:
   Documented in docs/kronosta-builtins.txt
   ⎕STR
   ⎕FILE
-
+  ⎕OSI
 
 
 REPL:
