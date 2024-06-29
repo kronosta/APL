@@ -123,6 +123,13 @@ public class Scope {
         };
         case "⎕OPT": case "⎕OPTIMIZE":
           return new Optimizer(this);
+        case "⎕STR": return new Builtin() {
+          @Override public String repr() { return "⎕STR"; };
+
+          @Override public Value call(Value w) {
+            return Main.toAPL(w.toString());
+          }
+        };
       }
     }
     Obj f = vars.get(name);

@@ -47,8 +47,6 @@ public class StencilBuiltin extends Dop {
             int[] bigSubMove = new int[w.rank];
             System.arraycopy(subMove, 0, bigSubMove, 0, subMove.length);
             subMove = bigSubMove;
-            System.out.println("subShape: "+Arrays.toString(subShape));
-            System.out.println("subMove: "+Arrays.toString(subMove));
         }
         boolean done = false;
         int[] centerCoords = new int[w.rank]; //will start out all zeroes;
@@ -88,7 +86,6 @@ public class StencilBuiltin extends Dop {
             int[] indexShape = new int[w.rank];
             for (int i = 0; i < w.rank; i++)
                 indexShape[i] = bottomRightCoords[i] - topLeftCoords[i] + 1;
-            System.out.println("indexShape: "+Arrays.toString(indexShape));
             int totalNumElements = 1;
             for (int i = 0; i < w.rank; i++)
                 totalNumElements *= subShape[i];
@@ -96,7 +93,6 @@ public class StencilBuiltin extends Dop {
             int[] coords = new int[w.rank];
             for (int i = 0; i < w.rank; i++)
                 coords[i] = centerCoords[i] - topLeftSpace[i];
-            System.out.println("coords: "+Arrays.toString(coords));
             int[] originalCoords = new int[w.rank];
             System.arraycopy(coords, 0, originalCoords, 0, w.rank);
             for (int i = 0; i < totalNumElements; i++)
@@ -125,7 +121,6 @@ public class StencilBuiltin extends Dop {
                     else incDone = true;
                 }
             }
-            //System.out.println("copyInto: "+Arrays.asList(copyInto));
             int[] fillElementNum = new int[w.rank];
             for (int i = 0; i < w.rank; i++)
             {
@@ -159,7 +154,6 @@ public class StencilBuiltin extends Dop {
                 else incDone = true;
             }
         }
-        System.out.println("resultCoords: "+Arrays.toString(resultCoords));
         //After the loop, resultCoords should be the dimensions of the combined result array.
         return Arr.create(singleResults, resultCoords);
     }
