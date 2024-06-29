@@ -168,3 +168,11 @@
             v[2], v[4], and v[6] represent if the previous permission applies to the owner only. 
 
             Not well tested, since it works a bit differently on Windows where I work.
+
+⎕OSI:
+    A gettable value.
+
+    A length-3 vector of nested character vectors:
+        [1] - Operating system name as returned from System.getProperty("os.name") in Java
+        [2] - Operating system version as returned from System.getProperty("os.version") in Java
+        [3] - Operating system CPU architecture as returned from System.getProperty("os.arch") in Java

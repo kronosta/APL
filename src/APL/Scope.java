@@ -131,6 +131,11 @@ public class Scope {
             return Main.toAPL(w.toString());
           }
         };
+        case "⎕OSI": return Arr.create(new Value[]{
+          Main.toAPL(System.getProperty("os.name")),
+          Main.toAPL(System.getProperty("os.version")),
+          Main.toAPL(System.getProperty("os.arch"))
+        });
       }
     }
     Obj f = vars.get(name);

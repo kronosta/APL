@@ -8,6 +8,7 @@ APL\Main$EType.class
 APL\Main$StdSys.class
 APL\Main.class
 APL\Scope$1.class
+APL\Scope$2.class
 APL\Scope$Big.class
 APL\Scope$ClassGetter.class
 APL\Scope$Delay.class
