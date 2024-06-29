@@ -116,6 +116,55 @@
 
         And many more...
 
+⎕STR:
+    Monadic:
+        Takes in any value and converts it into the same form used by output, as a character string.
 
+⎕FILE:
+    Dyadic:
+        The left argument should be a string determining what to do. It is case insensitive, so you don't have to
+        worry about matching the capitalization.
 
-    
+        'create':
+            Right argument should be a path as a string.
+            
+            Creates a file with that path.
+            Returns 0 if success, 1 if failure.
+
+        'delete':
+            Right argument should be a path as a string.
+            
+            Deletes the file with that path.
+            Returns 0.
+
+        'read':
+            Right argument should be a path as a string.
+            
+            Reads all bytes from the file and returns a numeric array of the bytes.
+
+        'write' or 'append':
+            Right argument should be a vector v with two enclosed elements.
+            v[1] should be a path as a string.
+            v[2] should be a vector of bytes
+
+            Writes the bytes to the file. If the left argument is 'append', adds the bytes after everything already there.
+
+        'read permissions':
+            Right argument should be a path as a string.
+
+            Returns a three element boolean vector v:
+            v[1] is true if Java has permission to execute the file
+            v[2] is true if Java has permission to read the file
+            v[3] is true if Java has permission to write the file
+
+            Not well tested, since it works a bit differently on Windows where I work.
+
+        'write permissions':
+            Right argument should be a vector v with two enclosed elements.
+            v[1] should be a path as a string.
+            v[2] should be a 6-element boolean vector
+
+            v[1], v[3], and v[5] set the execute, read, and write permissions, respectively.
+            v[2], v[4], and v[6] represent if the previous permission applies to the owner only. 
+
+            Not well tested, since it works a bit differently on Windows where I work.
