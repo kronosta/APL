@@ -58,6 +58,21 @@ bigints:
   ⎕NC 'v'  : array→2; function→3; dop→4; mop→5
   ⎕DR x    : https://github.com/dzaima/APL/blob/7fe18c1aa9b3bc36ffeff24e6cf7fd5a2745c2e5/src/APL/Scope.java#L736-L748
   ⎕GCLOG'v': log message upon getting garbage collected; Meant for testing for memory leaks (make sure to call ⎕GC before concluding anything!)
+  ⎕SH      : shell command, see the Shell inner class in APL/Scope.java
+  ⎕A       : uppercase alphabet
+  ⎕AV      : returns an APL codepage, although this does not reflect the new commands in kronosta/APL
+  ⎕D       : digits
+  ⎕L/⎕LA  : lowercase alphabet
+  ⎕GC      : returns used memory
+  ⎕DL      : sleep for w nanoseconds
+  ⎕UCS     : converts characters to Unicode code point integers and vice versa
+  ⎕BOXSIMPLE : 1 if output should box primitives
+  ⎕CLASS   : gets the Java class name of a value
+  ⎕PP      : precision as a three element array of numbers
+  ⎕PFX     : profiler
+  ⎕PFO     : profiler as an operator
+  ⎕U       : run user command
+  ⎕OPT     : optimizer
   ⎕MAP/⎕NS: hashmap with keys being strings (in the future there'll probably be another type with arbitrary keys)
     monadic: create from key-value pairs
     dyadic: left - keys; right - values
@@ -70,6 +85,10 @@ bigints:
       map.key
       'key'⊃map
       map⌸'key'
+
+  Documented in docs/kronosta-builtins.txt
+  ⎕STR
+  ⎕FILE
 
 
 
