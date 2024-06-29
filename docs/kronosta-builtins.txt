@@ -131,6 +131,15 @@
             Creates a file with that path.
             Returns 0 if success, 1 if failure.
 
+        'create directory':
+            Right argument should be a path as a string.
+
+            Creates a directory with that path, and also creates all necessary containing directories.
+            Example: 'test/inside/further'
+                will create 'test', 'test/inside', and 'test/inside/further'
+
+            Returns 0 on success, 1 on failure.
+
         'delete':
             Right argument should be a path as a string.
             

@@ -860,6 +860,18 @@ public class Scope {
             return new Num(1);
           }
         }
+        case "create directory":
+        {
+          String path;
+          try {
+            path = w.asString();
+          }
+          catch (APLError e) {
+            throw new DomainError("Right argument to 'create directory' ⎕FILE must be a string.", this);
+          }
+          File file = new File(path);
+          return new Num(file.mkdirs() ? 0 : 1);
+        }
         case "delete":
         {
           String path;
