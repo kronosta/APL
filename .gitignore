@@ -19,4 +19,8 @@ app/err
 *.apk
 AndroidIDE/build/
 
+# Test APL files
 ,*.apl
+
+# Personal batch file for Unicode Output, it's really just "chcp 65001"
+wuni.bat
