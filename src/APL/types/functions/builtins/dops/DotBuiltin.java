@@ -2,6 +2,7 @@ package APL.types.functions.builtins.dops;
 
 import APL.types.*;
 import APL.types.functions.*;
+import APL.types.functions.builtins.mops.EachBuiltin;
 import APL.types.functions.builtins.mops.ReduceBuiltin;
 import APL.errors.DomainError;
 
@@ -13,7 +14,7 @@ public class DotBuiltin extends Dop {
   public Value call(Obj aa, Obj ww, Value a, Value w, DerivedDop derv) {
     Fun wwf = isFn(ww, '⍹');
     if (a.rank == 1 && w.rank == 1) {
-      return new ReduceBuiltin().derive(aa).call(wwf.call(a, w)); // TODO not lazy
+      return new ReduceBuiltin().derive(aa).call(new EachBuiltin().derive(wwf).call(a, w)); // TODO not lazy
     }
     else if (a.rank == 2 && w.rank == 2) {
       if (a.shape[1] != w.shape[0])
