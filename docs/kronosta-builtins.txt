@@ -98,6 +98,24 @@
         and I don't think the function right argument (effectively a while loop) really makes sense
         because there wouldn't be any valid conditions to check against with just a function.
 
+        Other operator operators I won't be adding can be done through closures:
+        Each:
+            {op←⍵ ⋄ ◫'{{1◫(⊂op),⊂⍵}¨⍶}'}
+
+            Since operators returning arrays don't exist, the result of this operator operator
+            (a monadic operator value) must be applied to an array of functions to produce
+            a function that returns the result array regardless of its argument
+
+            a.k.a. The result of an Each-ed operator must be applied to get the resulting
+            function array.
+
+        Inner Product (given two operators and two arrays of functions): 
+            {left←⍺ ⋄ right←⍵ ⋄ ◫'{⍶({2◫left,⍺,⍵}.{2◫right,⍺,⍵})⍹}'}
+
+            Same caveat as Each, you have to call the resulting function to obtain the result function array.
+
+        And many more...
+
 
 
     
