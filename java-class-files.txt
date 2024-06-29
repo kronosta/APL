@@ -18,6 +18,7 @@ APL\Scope$DR$4.class
 APL\Scope$DR.class
 APL\Scope$Eraser.class
 APL\Scope$Ex.class
+APL\Scope$FileIO.class
 APL\Scope$GCLog$Logger.class
 APL\Scope$GCLog.class
 APL\Scope$Hasher.class

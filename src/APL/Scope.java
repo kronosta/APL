@@ -113,6 +113,7 @@ public class Scope {
         case "⎕PFR": return Profiler.results();
         case "⎕STDIN": return new Stdin();
         case "⎕BIG": return new Big();
+        case "⎕FILE": return new FileIO();
         case "⎕U": return new Builtin() {
           @Override public String repr() { return "⎕U"; }
   
@@ -819,6 +820,155 @@ public class Scope {
     }
     public String repr() {
       return "⎕DR";
+    }
+  }
+
+  public class FileIO extends Fun {
+    @Override
+    public String repr() {
+      return "⎕FILE";
+    }
+
+    public Value call(Value a, Value w) {
+      String as;
+      try {
+        as = a.asString();
+      }
+      catch (APLError e) {
+        throw new DomainError("Left argument to ⎕FILE must be a string.", this);
+      }
+      switch (as.toLowerCase()) {
+        case "create":
+        {
+          String path;
+          try {
+            path = w.asString();
+          }
+          catch (APLError e) {
+            throw new DomainError("Right argument to 'create' ⎕FILE must be a string.", this);
+          }
+          try {
+            new File(path).createNewFile();
+            return new Num(0);
+          }
+          catch (IOException e) {
+            return new Num(1);
+          }
+        }
+        case "delete":
+        {
+          String path;
+          try {
+            path = w.asString();
+          }
+          catch (APLError e) {
+            throw new DomainError("Right argument to 'delete' ⎕FILE must be a string.", this);
+          }
+          new File(path).delete();
+          return new Num(0);
+        }
+        case "read":
+        {
+          String path;
+          try {
+            path = w.asString();
+          }
+          catch (APLError e) {
+            throw new DomainError("Right argument to 'read' ⎕FILE must be a string.", this);
+          }
+          FileInputStream fis = null;
+          try {
+            fis = new FileInputStream(new File(path));
+            byte[] bytes = fis.readAllBytes();
+            Value[] values = new Value[bytes.length];
+            for (int i = 0; i < bytes.length; i++)
+              values[i] = new Num(bytes[i]);
+            return Arr.create(values);
+          }
+          catch (IOException e) {
+            return Arr.create(new Value[]{}, new int[]{0, 0});
+          }
+          finally {
+            try {
+              fis.close();
+            }
+            catch (IOException e) {
+            }
+          }
+        }
+        case "write":
+        case "append":
+        {
+          String path;
+          try {
+            path = w.get(0).asString();
+          }
+          catch (APLError e) {
+            throw new DomainError("(Right argument)[1] to '"+as.toLowerCase()+"' ⎕FILE must be a string.", this);
+          }
+          FileOutputStream fos = null;
+          try {
+            fos = new FileOutputStream(new File(path), as.toLowerCase().equals("append"));
+            int[] ints = w.get(1).asIntArr(); 
+            byte[] bytes = new byte[ints.length];
+            for (int i = 0; i < ints.length; i++)
+              bytes[i] = (byte)(ints[i]);
+            fos.write(bytes);
+            return new Num(0);
+          }
+          catch (IOException e) {
+            return new Num(1);
+          }
+          finally {
+            try {
+              fos.close();
+            }
+            catch (IOException e){
+            }
+          }
+        }
+        case "read permissions":
+        {
+          String path;
+          try {
+            path = w.asString();
+          }
+          catch (APLError e) {
+            throw new DomainError("Right argument to 'read permissions' ⎕FILE must be a string.", this);
+          }
+          File file = new File(path);
+          boolean[] perms = new boolean[3];
+          perms[0] = file.canExecute();
+          perms[1] = file.canRead();
+          perms[2] = file.canWrite();
+          Value[] permValues = new Value[perms.length];
+          for (int i = 0; i < perms.length; i++)
+            permValues[i] = new Num(perms[i] ? 1 : 0);
+          return Arr.create(permValues);
+        }
+        case "write permissions":
+        {
+          String path;
+          try {
+            path = w.get(0).asString();
+          }
+          catch (APLError e) {
+            throw new DomainError("(Right argument)[1] to 'write permissions' ⎕FILE must be a string.", this);
+          }
+          File file = new File(path);
+          Value[] permValues = w.get(1).values();
+          if (permValues.length < 6) throw new DomainError("(Right argument)[2] to 'write permissions' must contain at least 6 values.");
+          boolean[] perms = new boolean[permValues.length];
+          for (int i = 0; i < permValues.length; i++)
+            perms[i] = permValues[i].asInt() != 0;
+          file.setExecutable(perms[0], perms[1]);
+          file.setReadable(perms[2], perms[3]);
+          file.setWritable(perms[4], perms[5]);
+          return new Num(0);
+        }
+        default:
+          throw new DomainError("Left argument '"+as+"' is not valid for ⎕FILE.");
+      }
     }
   }
   
