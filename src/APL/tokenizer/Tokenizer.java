@@ -289,6 +289,9 @@ public class Tokenizer {
         } else if (c == '#') {
           tokens.add(new ScopeTok(raw, i, i+1));
           i++;
+        } else if (Character.isSurrogatePair(c, next)) {
+          i+=2;
+          tokens.add(new OpTok(raw, i, i + 1, "" + c + next));
         } else if (c == ' ' || c == '\t') {i++;} else {
           if (pointless) tokens.add(new ErrTok(raw, i, i + 1));
           else {
